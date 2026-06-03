@@ -1,0 +1,19 @@
+{
+    "name": "Princeton algs4 / introcs Java (CLI)",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/worker/workspace,type=bind,consistency=cached",
+    "workspaceFolder": "/home/worker/workspace",
+    "remoteUser": "worker",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "java.project.sourcePaths": ["src"],
+                "java.project.referencedLibraries": [".lift/algs4.jar"]
+            }
+        }
+    },
+    "postCreateCommand": "javac -version && java -version && command -v javac-algs4 java-algs4 checkstyle && javac-algs4 src/HelloWorld.java && (cd src && java-algs4 HelloWorld)"
+}
